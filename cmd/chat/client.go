@@ -37,13 +37,13 @@ func main() {
 
 	// this goroutine is for "watching" messages being received
 	wg.Add(1)
-	go func(str chat.Chat_SendMessageClient) {
+	go func() {
 		defer wg.Done()
 		for {
 			newMsg, _ := stream.Recv()
 			fmt.Printf("[%s] %s: %s\n", newMsg.Timestamp, newMsg.Message.Username, newMsg.Message.Content)
 		}
-	}(stream)
+	}()
 
 	// this other goroutine is to send a message and let the program in a non-blocking state while a message is not gathered yet(scanf)
 	wg.Add(1)
