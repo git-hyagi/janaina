@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package chat;
+
+option go_package = "github.com/git-hyagi/janaina/pkg/chat";
+
+
+message Message {
+  uint32 idPerson = 1;
+  string username = 2;
+  string content = 4;  
+}
+
+message ServerMessage {
+    string timestamp = 1;
+    Message message = 2;
+}
+
+service Chat {
+  rpc SendMessage (stream Message) returns (stream ServerMessage);
+}

@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package person;
+
+option go_package = "github.com/git-hyagi/janaina/pkg/person";
+
+message Person {
+  uint32 idPerson = 1;
+  uint32 contact = 2;
+  string username = 3;
+  string name = 4;
+  string surname = 5;
+  string type = 6;
+  string password =7;
+}
+
+message Contact {
+  uint32 idContact = 1;
+  string phone = 2;
+  string email = 3;
+  string facebook = 4;
+}
+
+message Admin {
+  uint32 idAdmin = 1;
+  uint32 idPerson = 2;
+  Person person = 3;
+  Contact contact = 4;
+}
+
+message Patient {
+  uint32 idPatient = 1;
+  uint32 idPerson = 2;
+  Person person = 3;
+  Contact contact = 5;
+}
+
+message Medic {
+  uint32 idMedic = 1;
+  string crm = 2;
+  uint32 idPerson = 3;
+  Person person = 4;
+  Contact contact = 5;
+}
+
+message Type {
+  uint32 idPerson = 1;
+  uint32 idMedic = 2;
+  uint32 idAdmin = 3;
+  uint32 idPatient = 4;
+  string role = 5;
+}
+
+message Message{
+  string body = 1;
+}
+
+message PrimaryKey {
+  string username = 1;
+}
+
+message UpdateField {
+  string username = 1;
+  string newContent = 2;
+}
+
+service ManagePerson {
+  rpc CreateMedic(Medic) returns (Message) {}
+  rpc CreatePatient(Patient) returns (Message) {}
+  rpc CreateAdmin(Admin) returns (Message) {}
+
+  rpc RemovePerson(PrimaryKey) returns (Message) {}
+
+  rpc FindPerson(PrimaryKey) returns (Person) {}
+
+  rpc UpdateEmail(UpdateField) returns (Message) {}
+  rpc UpdatePhone(UpdateField) returns (Message) {}
+  rpc UpdateFacebook(UpdateField) returns (Message) {}
+  rpc UpdateName(UpdateField) returns (Message) {}
+  rpc UpdateSurname(UpdateField) returns (Message) {}
+  rpc UpdatePassword(UpdateField) returns (Message) {}
+}
