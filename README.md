@@ -5,7 +5,7 @@ This is just a personal project of a basic telemedicine app.
 # FEATURES
 - [x] GRPC connections through a secure connection using TLS and jwt authentication
 - [ ] [WIP] RBAC
-- [x] CRUD user/medic/patient
+- [x] CRUD user/medic/patient  
    note: even though this is the first working version, there are a lot of issues and pending work to be done
 - [x] Chat (Streaming GRPC server (golang) and client (flutter))
 - [ ] schedule doctor appointment
@@ -20,7 +20,7 @@ This is just a personal project of a basic telemedicine app.
 
 # Usage
 
-To run the server as a Kubernetes/OpenShift pod, create a secret called config.yaml and mount it in the /opt/app-root (default for OpenShift s2i) folder.
+To run the server as a `Kubernetes`/`OpenShift` pod, create a secret called `config.yaml` and mount it in the `/opt/app-root` (default for `OpenShift s2i`) folder.
 
 ## config file
 - should be named config.yaml
@@ -73,5 +73,5 @@ oc set volume deployment/telemedicine --add -m /opt/app-root/config.yaml --sub-p
 
 # REFERENCES
 Big thanks to:
-[TECH SCHOOL](https://gitlab.com/techschool/pcbook)
-[TENSOR PROGRAMMING](https://github.com/tensor-programming/docker_grpc_chat_tutorial)
+[TECH SCHOOL](https://gitlab.com/techschool/pcbook)  
+[TENSOR PROGRAMMING](https://github.com/tensor-programming/docker_grpc_chat_tutorial)  
