@@ -6,7 +6,7 @@ This is just a personal project of a basic telemedicine app.
 - [x] GRPC connections through a secure connection using TLS and jwt authentication
 - [ ] [WIP] RBAC
 - [x] CRUD user/medic/patient  
-   note: even though this is the first working version, there are a lot of issues and pending work to be done
+   **note**: even though this is the first working version, there are a lot of issues and pending work to be done
 - [x] Chat (Streaming GRPC server (golang) and client (flutter))
 - [ ] schedule doctor appointment
 - [ ] prescription
@@ -37,7 +37,7 @@ table:
 ~~~
 
 #### DRAFT openshift
-* Database settings [DEPRECATED! (database schema changed)]
+* Database settings [**DEPRECATED!** (database schema changed)]
 ~~~
 pod=$(oc -n test3 get pods -l name=mariadb -o custom-columns=:.metadata.name)
 oc exec $pod -- mysql -u root -e "create table medic (name VARCHAR(100) CHARACTER SET utf8, address VARCHAR(100) CHARACTER SET utf8, CRM VARCHAR(100) CHARACTER SET utf8);" telemedicine
@@ -72,6 +72,6 @@ oc set volume deployment/telemedicine --add -m /opt/app-root/config.yaml --sub-p
 ~~~
 
 # REFERENCES
-Big thanks to:
+Big thanks to:  
 [TECH SCHOOL](https://gitlab.com/techschool/pcbook)  
 [TENSOR PROGRAMMING](https://github.com/tensor-programming/docker_grpc_chat_tutorial)  
