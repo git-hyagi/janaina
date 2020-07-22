@@ -3,11 +3,12 @@ This is just a personal project of a basic telemedicine app.
 
 
 # FEATURES
-- [x] GRPC connections through a secure connection using TLS and jwt authentication
+- [x] `GRPC` unnary connections through a secure communication using `TLS` and `JWT` authentication
 - [ ] [WIP] RBAC
 - [x] CRUD user/medic/patient  
    **note**: even though this is the first working version, there are a lot of issues and pending work to be done
-- [x] Chat (Streaming GRPC server (golang) and client (flutter))
+- [x] Chat (`Bi-directional Streaming GRPC` server (`golang`) and client (`flutter/dart`))  
+   **note**: as of CRUD, there are a lot of issues and pending work (for now, it is already sending and receiving messages with some disconnections and other bugs)
 - [ ] schedule doctor appointment
 - [ ] prescription
   - [ ] digital signature
@@ -15,7 +16,7 @@ This is just a personal project of a basic telemedicine app.
 
 
 # The database
-- [ ] [WIP] First draft
+- [ ] [WIP] First draft running as a `MySQL` `Kubernetes/OpenShift` pods using script [tables.sh](deploy/tables.sh) to create the database schema. 
 ![alt text](https://github.com/git-hyagi/janaina/blob/master/MER.png?raw=true)
 
 # Usage
