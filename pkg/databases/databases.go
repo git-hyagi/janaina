@@ -39,67 +39,67 @@ func (db *DbConnection) FindPersonByUsername(username string) (types.Person, err
 
 // function to remove a user from database
 func (db *DbConnection) RemoveUserByName(name, table string) (err error) {
-	_, err = db.Conn.Query("DELETE FROM " + table + " WHERE name='" + name + "'")
+	_, err = db.Conn.Exec("DELETE FROM " + table + " WHERE name='" + name + "'")
 	return err
 }
 
 // function to update an address from an user
 func (db *DbConnection) UpdateUserAddress(name, address, table string) (err error) {
-	_, err = db.Conn.Query("UPDATE " + table + " SET address='" + address + "' WHERE name='" + name + "'")
+	_, err = db.Conn.Exec("UPDATE " + table + " SET address='" + address + "' WHERE name='" + name + "'")
 	return err
 }
 
 // function to update an crm from an user
 func (db *DbConnection) UpdateUserCrm(name, crm, table string) (err error) {
-	_, err = db.Conn.Query("UPDATE " + table + " SET crm='" + crm + "' WHERE name='" + name + "'")
+	_, err = db.Conn.Exec("UPDATE " + table + " SET crm='" + crm + "' WHERE name='" + name + "'")
 	return err
 }
 
 // function to update a name from an user
 func (db *DbConnection) UpdateUserName(name, new_name, table string) (err error) {
-	_, err = db.Conn.Query("UPDATE " + table + " SET name='" + new_name + "' WHERE name='" + name + "'")
+	_, err = db.Conn.Exec("UPDATE " + table + " SET name='" + new_name + "' WHERE name='" + name + "'")
 	return err
 }
 
 // add a new contact to contato table
 func (db *DbConnection) AddContact(telephone, email, facebook string) (err error) {
-	_, err = db.Conn.Query("INSERT INTO contato VALUES(NULL,'" + telephone + "','" + email + "','" + facebook + "' )")
+	_, err = db.Conn.Exec("INSERT INTO contato VALUES(NULL,'" + telephone + "','" + email + "','" + facebook + "' )")
 	return err
 }
 
 // add a new person to pessoa table
 func (db *DbConnection) AddPerson(idContact, username, name, surname, userType, password string) (err error) {
-	_, err = db.Conn.Query("INSERT INTO pessoa VALUES(NULL,'" + idContact + "','" + username + "','" + name + "','" + surname + "','" + userType + "','" + password + "' )")
+	_, err = db.Conn.Exec("INSERT INTO pessoa VALUES(NULL,'" + idContact + "','" + username + "','" + name + "','" + surname + "','" + userType + "','" + password + "' )")
 	return err
 }
 
 // add a new person to tipo table
 func (db *DbConnection) AddType(idPerson, idMedic, idAdmin, idPatient string) (err error) {
 	if idMedic != "NULL" {
-		_, err = db.Conn.Query("INSERT INTO tipo VALUES('" + idPerson + "','" + idMedic + "',NULL,NULL,'medico')")
+		_, err = db.Conn.Exec("INSERT INTO tipo VALUES('" + idPerson + "','" + idMedic + "',NULL,NULL,'medico')")
 	} else if idAdmin != "NULL" {
-		_, err = db.Conn.Query("INSERT INTO tipo VALUES('" + idPerson + "',NULL,'" + idAdmin + "',NULL,'admin')")
+		_, err = db.Conn.Exec("INSERT INTO tipo VALUES('" + idPerson + "',NULL,'" + idAdmin + "',NULL,'admin')")
 	} else if idPatient != "NULL" {
-		_, err = db.Conn.Query("INSERT INTO tipo VALUES('" + idPerson + "',NULL,NULL,'" + idPatient + "','paciente')")
+		_, err = db.Conn.Exec("INSERT INTO tipo VALUES('" + idPerson + "',NULL,NULL,'" + idPatient + "','paciente')")
 	}
 	return err
 }
 
 // add a new person to admin table
 func (db *DbConnection) AddAdmin(idPerson string) (err error) {
-	_, err = db.Conn.Query("INSERT INTO admin VALUES(NULL,'" + idPerson + "')")
+	_, err = db.Conn.Exec("INSERT INTO admin VALUES(NULL,'" + idPerson + "')")
 	return err
 }
 
 // add a new person to medico table
 func (db *DbConnection) AddMedic(CRM, idPerson string) (err error) {
-	_, err = db.Conn.Query("INSERT INTO medico VALUES(NULL,'" + CRM + "','" + idPerson + "' )")
+	_, err = db.Conn.Exec("INSERT INTO medico VALUES(NULL,'" + CRM + "','" + idPerson + "' )")
 	return err
 }
 
 // add a new patient to paciente table
 func (db *DbConnection) AddPatient(idPerson string) (err error) {
-	_, err = db.Conn.Query("INSERT INTO paciente VALUES(NULL,'" + idPerson + "' )")
+	_, err = db.Conn.Exec("INSERT INTO paciente VALUES(NULL,'" + idPerson + "' )")
 	return err
 }
 
