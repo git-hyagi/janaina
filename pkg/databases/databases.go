@@ -37,30 +37,6 @@ func (db *DbConnection) FindPersonByUsername(username string) (types.Person, err
 	return user, nil
 }
 
-// function to remove a user from database
-func (db *DbConnection) RemoveUserByName(name, table string) (err error) {
-	_, err = db.Conn.Exec("DELETE FROM " + table + " WHERE name='" + name + "'")
-	return err
-}
-
-// function to update an address from an user
-func (db *DbConnection) UpdateUserAddress(name, address, table string) (err error) {
-	_, err = db.Conn.Exec("UPDATE " + table + " SET address='" + address + "' WHERE name='" + name + "'")
-	return err
-}
-
-// function to update an crm from an user
-func (db *DbConnection) UpdateUserCrm(name, crm, table string) (err error) {
-	_, err = db.Conn.Exec("UPDATE " + table + " SET crm='" + crm + "' WHERE name='" + name + "'")
-	return err
-}
-
-// function to update a name from an user
-func (db *DbConnection) UpdateUserName(name, new_name, table string) (err error) {
-	_, err = db.Conn.Exec("UPDATE " + table + " SET name='" + new_name + "' WHERE name='" + name + "'")
-	return err
-}
-
 // add a new contact to contato table
 func (db *DbConnection) AddContact(telephone, email, facebook string) (err error) {
 	_, err = db.Conn.Exec("INSERT INTO contato VALUES(NULL,'" + telephone + "','" + email + "','" + facebook + "' )")
