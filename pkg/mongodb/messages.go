@@ -42,31 +42,28 @@ func main() {
 	}
 	defer client.Disconnect(ctx)
 
-	//	db, err := client.ListDatabaseNames(ctx, bson.M{})
-	//	if err != nil {
-	//		fmt.Printf("%v\n", err)
-	//	}
-	//
-	//fmt.Printf("%v\n", db)
-
-	chat_db := client.Database("chat")
 	test.Conn = client.Database("chat")
-	collection1 := chat_db.Collection("col1")
 
-	_, err = collection1.InsertOne(ctx, bson.D{
-		{Key: "id", Value: "1"},
-		{Key: "username", Value: "android"},
-		{Key: "timestamp", Value: time.Now().Format("03:04")},
-		{Key: "message", Value: "Hello World!"},
+	test.InsertMessage(ctx, "col1", "2", "John Doe", time.Now().Format("03:04"), "Hi!")
+	test.GetAllMessages(ctx, "col1")
+	fmt.Println("====================================================")
+	test.GetMessagesNewerThan(ctx, "col1", "11:00")
+
+}
+
+func (con *Mongo) InsertMessage(ctx context.Context, col, id, username, timestamp, message string) error {
+	collection := con.Conn.Collection(col)
+	_, err := collection.InsertOne(ctx, bson.D{
+		{Key: "id", Value: id},
+		{Key: "username", Value: username},
+		{Key: "timestamp", Value: timestamp},
+		{Key: "message", Value: message},
 	})
 	if err != nil {
 		fmt.Printf("%v\n", err)
 	}
 
-	test.GetAllMessages(ctx, "col1")
-	fmt.Println("====================================================")
-	test.GetMessagesNewerThan(ctx, "col1", "11:00")
-
+	return err
 }
 
 func (con *Mongo) GetMessagesNewerThan(ctx context.Context, col, newer string) error {
