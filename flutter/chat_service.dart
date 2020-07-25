@@ -39,12 +39,24 @@ class ChatService {
   }
 
   void add(String username, String content) {
+
+    // update the class attribute msg
     msg.username = username;
     msg.content = content;
     msg.idPerson = 1;
+
+    // this is a workaround that I found to add a new message to the list without "overwriting"**
+    // all the other messages (https://github.com/git-hyagi/janaina/issues/15)
+    // ** actually, it was not overwriting, the thing is, when I did srvMsg.message = msg
+    // ** the srvMsg.message was receiving a reference of msg, not a copy of it.
+    Message temp = new Message();
+    temp.idPerson = 1;
+    temp.username = username;
+    temp.content  = content;
+
     var srvMsg = ServerMessage();
     srvMsg.timestamp = DateFormat('HH:mm').format(DateTime.now()).toString();
-    srvMsg.message = msg;
+    srvMsg.message = temp;
     listMsg.add(srvMsg);
   }
 }
